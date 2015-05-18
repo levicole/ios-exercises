@@ -12,17 +12,25 @@
 
 - (NSString *)favoriteDrinkForStarTrekCharacterDictionary:(NSDictionary *)characterDictionary {
     /* WORK HERE */
-    return @"";
+    return characterDictionary[@"favorite drink"];
 }
 
 - (NSArray *)arrayOfFavoriteDrinksForStarTrekCharacters:(NSArray *)charactersArray {
-    /* WORK HERE */
-    return @[];
+    // I originally had:
+    // NSMutableArray *drinksArray = [@[] muteableCopy]
+    // But this feels like a little bit of a waste...
+    // 
+    NSMutableArray *drinksArray = [[NSMutableArray alloc] init];
+    for (NSDictionary *dict in charactersArray) {
+        [drinksArray addObject:dict[@"favorite drink"]];
+    }
+    return drinksArray;
 }
 
 - (NSDictionary *)dictionaryWithQuoteAddedToStarTrekCharacterDictionary:(NSDictionary *)characterDictionary {
-    /* WORK HERE */
-    return @{};
+    NSMutableDictionary *newCharacterDictionary = [characterDictionary mutableCopy];
+    [newCharacterDictionary setObject:@"This is a quote" forKey:@"quote"];
+    return newCharacterDictionary;
 }
 
 @end
