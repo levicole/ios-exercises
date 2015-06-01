@@ -7,8 +7,7 @@ Strings
 */
 
 func favoriteCheeseStringWithCheese(cheese: String) -> String {
-    // WORK HERE
-    return cheese
+    return "My favorite cheese is " + cheese + "."
 }
 
 let fullSentence = favoriteCheeseStringWithCheese("cheddar")
@@ -20,13 +19,13 @@ Arrays & Dictionaries
 
 */
 
-let numberArray = [1, 2, 3, 4]
+var numberArray = [1, 2, 3, 4]
 // Add 5 to this array
-// WORK HERE
+numberArray.append(5)
 
-let numberDictionary = [1 : "one", 2 : "two", 3 : "three", 4 : "four"]
+var numberDictionary = [1 : "one", 2 : "two", 3 : "three", 4 : "four"]
 // Add 5 : "five" to this dictionary
-// WORK HERE
+numberDictionary[5] = "five"
 
 /*
 
@@ -35,10 +34,14 @@ Loops
 */
 
 // Use a closed range loop to print 1 - 10, inclusively
-// WORK HERE
-
+for myInt in 1...10 {
+    println("\(myInt)")
+}
 // Use a half-closed range loop to print 1 - 10, inclusively
-// WORK HERE
+for myInt in 1..<10 {
+    println("\(myInt)")
+}
+
 
 let worf = [
     "name": "Worf",
@@ -57,8 +60,12 @@ let characters = [worf, picard]
 
 func favoriteDrinksArrayForCharacters(characters:Array<Dictionary<String, String>>) -> Array<String> {
     // return an array of favorite drinks, like ["prune juice", "tea, Earl Grey, hot"]
-    // WORK HERE
-    return []
+//    var favs = [String]()
+//    for foo in characters {
+//        favs.append(foo["favorite drink"]!)
+//    }
+//    return favs
+    return characters.map{ return $0["favorite drink"]! }
 }
 
 let favoriteDrinks = favoriteDrinksArrayForCharacters(characters)
@@ -75,9 +82,17 @@ Functions
 
 let strings = ["milk", "eggs", "bread", "challah"]
 
-// WORK HERE - make your function and pass `strings` in
+func joinBySemiColon(strings:Array<String>) -> String {
+    var joiner = ";"
+    // I have to be honest, I stole this from SO
+    // Mainly because I was lazy and I didn't want to write a loop
+    return joiner.join(strings)
+}
 
 let expectedOutput = "milk;eggs;bread;challah"
+let actualOutput   = joinBySemiColon(strings)
+
+expectedOutput == actualOutput
 
 /*
 
@@ -88,4 +103,6 @@ Closures
 let cerealArray = ["Golden Grahams", "Cheerios", "Trix", "Cap'n Crunch OOPS! All Berries", "Cookie Crisp"]
 
 // Use a closure to sort this array alphabetically
-// WORK HERE
+sorted(cerealArray, {
+    return $0 < $1
+})
